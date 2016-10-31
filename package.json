@@ -1,10 +1,10 @@
 {
-  "name": "appengine-datastore",
-  "description": "Sample for Google Cloud Datastore on Google App Engine",
+  "name": "hbase-test-wy",
+  "description": "Sample for HBase thrift2 api call",
   "version": "0.0.1",
   "private": true,
   "license": "Apache Version 2.0",
-  "author": "Google Inc.",
+  "author": "wang yu",
   "engines": {
     "node": "^4.2.2"
   },
