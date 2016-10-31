@@ -17,17 +17,17 @@ function writeTofile2() {
     console.log(scan);
 
     hbaseClientSrc.scan('channel', scan, function (err, entities) { 
-        let alldata = [];
+        var alldata = [];
         console.log(entities.length);
         entities.map(function (data) {
-            let datachannelunit = null;
-            let datachannellongname = null;
-            let channelName = data.row.split('|')[3];
-            let rowkey = channelName + '|depth|wb1|w1';
+            var datachannelunit = null;
+            var datachannellongname = null;
+            var channelName = data.row.split('|')[3];
+            var rowkey = channelName + '|depth|wb1|w1';
             console.log(rowkey, data.columnValues.length);
             var infoput = false;
-            let indexes = [];
-            let values = [];
+            var indexes = [];
+            var values = [];
             data.columnValues.filter(function (columnvalue) {
                 if (columnvalue.qualifier === 'unit') datachannelunit = columnvalue.value;
                 if (columnvalue.qualifier === 'longname') { datachannellongname = columnvalue.value; console.log(datachannellongname);}
