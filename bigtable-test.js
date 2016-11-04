@@ -1,4 +1,4 @@
-var bigtable = require('@google-cloud/bigtable')({projectId: 'well-integrity-dev-1372'});
+var bigtable = require('@google-cloud/bigtable')({projectId: 'yourprojectid'});
 
 
 var callback = function(err, instance, operation){

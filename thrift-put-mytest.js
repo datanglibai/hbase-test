@@ -7,7 +7,7 @@ var hbaseClientDes = HBase.client(configDes);
 
 
 function putToHBase(put) {
-    hbaseClientDes.put('channels', put, function (err) {
+    hbaseClientDes.put('data', put, function (err) {
         if (err) {
             console.log('error', err);
             return;
@@ -22,16 +22,16 @@ function format(num, size) {
     return s;
 }
 
-for (var i = 0; i < channels.length; i++) {
-    var row = channels[i].Key;
+for (var i = 0; i < data.length; i++) {
+    var row = data[i].Key;
     var put = hbaseClientDes.Put(row);
-    put.add('info', 'longname', channels[i].LongName); // 100 must be string
-    put.add('info', 'unit', channels[i].Unit);
+    put.add('info', 'longname', data[i].LongName); // 100 must be string
+    put.add('info', 'unit', data[i].Unit);
     putToHBase(put);
 
-    for (var j = 0; j < channels[i].Index.length; j++) {
-        var put2 = hbaseClientDes.Put(channels[i].Key + '|' + format(channels[i].Index[j],7));    //row1 is rowKey
-        put2.add('data', 'v', channels[i].Value[j]);
+    for (var j = 0; j < data[i].Index.length; j++) {
+        var put2 = hbaseClientDes.Put(data[i].Key + '|' + format(data[i].Index[j],7));    //row1 is rowKey
+        put2.add('data', 'v', data[i].Value[j]);
         putToHBase(put2);
     }
 }

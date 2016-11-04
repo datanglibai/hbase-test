@@ -26,7 +26,7 @@ app.enable('trust proxy');
 var dataset = gcloud.datastore({
     // This environment variable is set by app.yaml when running on GAE, but will
     // need to be manually set when running locally.
-    projectId: 'well-integrity' //process.env.GCLOUD_PROJECT''
+    projectId: 'your project id' //process.env.GCLOUD_PROJECT''
 });
 
 var apiRouter = require('./router');
@@ -38,9 +38,9 @@ app.get('/', function(req, res, next) {
     res.status(200).json({ key: 'value' });
 });
 
-app.get('/ibc', function(req, res) {
+app.get('/data', function(req, res) {
 
-    var query = dataset.createQuery('ibc-data-test');
+    var query = dataset.createQuery('yourkindname');
 
     dataset.runQuery(query, function(err, entities) {
         if (err) {
@@ -52,22 +52,22 @@ app.get('/ibc', function(req, res) {
                 return format(
                     'Time: %s, filename: %s, key : %s',
                     entity.data.timestamp,
-                    entity.data.dlisname,
+                    entity.data.name,
                     entity.key
                 );
             });
 
-            var output = format('IBC dlis files:\n%s', visits.join('\n'));
+            var output = format('Files:\n%s', visits.join('\n'));
 
             res.set('Content-Type', 'text/plain');
             res.status(200).send(output);
         } else {
             dataset.save({
-                key: dataset.key('ibc-data-test'),
+                key: dataset.key('yourkindtosave'),
                 data: {
                     timestamp: new Date(),
-                    //channels:[{channelName:"GR",dataSet:[{index: 4000,value: 205},{index: 4001,value: 203}]},{channelName:"LITH",dataSet:[{index: 4000,value: 15},{index: 4001,value: 13}]}]
-                    dlisname: 'ibc-data-from-maxwell'
+                    
+                    name: 'whatever'
                 }
             }, function(err) {
                 if (err) {
@@ -75,8 +75,8 @@ app.get('/ibc', function(req, res) {
                 }
             });
         }
-    }); //end of runquery
-}); // end of '/ibc'
+    }); 
+}); 
 
 
 

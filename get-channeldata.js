@@ -2,14 +2,14 @@ var HBase = require('node-thrift-hbase');
 var config = {  host: 'localhost', port: 9090};
 
 var client = HBase.client(config);
-var tableName = 'channel';
+var tableName = 'whatever';
 
 
 getchanneldata();
 
 function getchanneldata(){
     
-    var get = client.Get('w1/wb1/channel/ECCE');
+    var get = client.Get('rowkey');
     client.get(tableName,get,function(err,data){ 
     //get users table 
  

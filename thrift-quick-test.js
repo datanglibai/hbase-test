@@ -1,8 +1,8 @@
 var HBase = require('node-thrift-hbase');
 var fs = require('fs');
-//var config = {  host: '104.198.50.78', port: 9090};
+//var config = {  host: '', port: 9090};
 //var configDes = { host: '13.75.114.94', port: 9090 };
-var configSrc = { host: '104.198.50.78', port: 9090 };
+var configSrc = { host: '', port: 9090 };
 
 //var hbaseClientDes = HBase.client(configDes);
 var hbaseClientSrc = HBase.client(configSrc);
@@ -24,26 +24,26 @@ function writeTofile() {
         let alldata = [];
         console.log(entities.length);
         entities.map(function (data) {
-            let datachannelunit = null;
-            let datachannellongname = null;
-            let channelName = data.row.split('|')[3];
-            let rowkey = channelName + '|depth|wb1|w1';
+            let dataitemunit = null;
+            let dataitemlongname = null;
+            let itemName = data.row.split('|')[3];
+            let rowkey = itemName + '|depth|wb1|w1';
             console.log(rowkey, data.columnValues.length);
             var infoput = false;
             let indexes = [];
             let values = [];
             data.columnValues.filter(function (columnvalue) {
-                if (columnvalue.qualifier === 'unit') datachannelunit = columnvalue.value;
-                if (columnvalue.qualifier === 'longname') { datachannellongname = columnvalue.value; console.log(datachannellongname);}
+                if (columnvalue.qualifier === 'unit') dataitemunit = columnvalue.value;
+                if (columnvalue.qualifier === 'longname') { dataitemlongname = columnvalue.value; console.log(dataitemlongname);}
 
                 return (columnvalue.family === "data")
 
-                // if (datachannelunit && datachannellongname && !infoput) {
+                // if (dataitemunit && dataitemlongname && !infoput) {
                 //     infoput = true;
-                //     console.log((datachannelunit, datachannellongname));
+                //     console.log((dataitemunit, dataitemlongname));
                 //     var put = hbaseClientDes.Put(rowkey);
-                //     put.add('info', 'longname', datachannellongname); // 100 must be string
-                //     put.add('info', 'unit', datachannelunit);
+                //     put.add('info', 'longname', dataitemlongname); // 100 must be string
+                //     put.add('info', 'unit', dataitemunit);
                 //     hbaseClientDes.put('channels', put, function (err) { //put users table
                 //         if (err) { console.log('error:', err); return; }
                 //         console.log(err, rowkey + ' put is successfully');
@@ -62,9 +62,9 @@ function writeTofile() {
 
             alldata.push({
                 "Key": rowkey,
-                "ChannelName": channelName,
-                "LongName": datachannellongname,
-                "Unit": datachannelunit,
+                "ItemName": itemName,
+                "LongName": dataitemlongname,
+                "Unit": dataitemunit,
                 "Index": indexes,
                 "Value": values
             });
@@ -72,7 +72,7 @@ function writeTofile() {
         });
 
         var jsoncontent = JSON.stringify(alldata);
-        fs.writeFileSync('./real-ibc-data.json', jsoncontent);
+        fs.writeFileSync('./realdata.json', jsoncontent);
     });
 }
 

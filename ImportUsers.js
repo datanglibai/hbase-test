@@ -7,7 +7,7 @@ var gcloud = require('gcloud');
 var dataset = gcloud.datastore({
     // This environment variable is set by app.yaml when running on GAE, but will
     // need to be manually set when running locally.
-    projectId: 'well-integrity' //process.env.GCLOUD_PROJECT''
+    projectId: 'yourprojectid' //process.env.GCLOUD_PROJECT''
 });
 
 
