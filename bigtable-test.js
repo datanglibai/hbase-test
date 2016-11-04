@@ -1,30 +1,25 @@
-var bigtable = require('@google-cloud/bigtable')();
+var bigtable = require('@google-cloud/bigtable')({projectId: 'well-integrity-dev-1372'});
+
+
+var callback = function(err, instance, operation){
+operation.on('complete', function(){
+console.log(operation)});
+};
 
 var instance = bigtable.instance('my-instance');
 
-//create instance
-instance.create({
-  clusters: [
-    {
-      name: 'my-cluster',
-      location: 'us-central1-b',
-      nodes: 3
-    }
-  ]
-}, function(err, instance, operation) {
-  operation
-    .on('error', console.log)
-    .on('complete', function() {
-        console.log('complete');
-      // `instance` is your newly created Instance object.
-    });
+//var options = { families: ['info']};
+//var table = instance.createTable('testbigtable', options, function(err, table, apiResponse){console.log(table);});
+
+var table = instance.table('testbigtable');
+//console.log(table);
+
+/*
+//comment below code next run time since the family is already created.
+table.createFamily('info', function(err, family){ 
+	console.log('err', err)	;
+	console.log(family, "created");
 });
-
-var options = {
-  families: ['info']
-};
-
-instance.createTable('testtable', options, function(err, table) {});
 
 var rows = [
   {
@@ -39,11 +34,11 @@ var rows = [
 
 table.insert(rows, function(err) {
   if (!err) {
-    // Your rows were successfully inserted.
+   console.log('firstkey', ' were successfully inserted.');
   }
 });
-
+*/
 table.getRows(function(err, rows) {
-    console.log(rows);
+    console.log(rows[0].id, rows[0].data.info.name);
   // `rows` is an array of Row objects.
 });
