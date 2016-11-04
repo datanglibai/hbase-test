@@ -3,43 +3,6 @@
         {
             "username": "tester1",
             "password": "tester1"
-        },
-        {
-            "username": "tester2",
-            "password": "tester2"
-        },
-         {
-            "username": "tester3",
-            "password": "tester3"
-        },
-        {
-            "username": "tester4",
-            "password": "tester4"
-        }, 
-        {
-            "username": "tester5",
-            "password": "tester5"
-        },
-        {
-            "username": "tester6",
-            "password": "tester6"
-        },
-         {
-            "username": "tester7",
-            "password": "tester7"
-        },
-        {
-            "username": "tester8",
-            "password": "tester8"
-        }
-        ,
-         {
-            "username": "tester9",
-            "password": "tester9"
-        },
-        {
-            "username": "tester10",
-            "password": "tester10"
-        }
+        }       
     ]
 }
