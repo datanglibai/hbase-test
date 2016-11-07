@@ -1,4 +1,4 @@
-var bigtable = require('@google-cloud/bigtable')({projectId: 'yourprojectid'});
+var bigtable = require('@google-cloud/bigtable')({projectId: 'well-integrity-dev-1372'});
 
 
 var callback = function(err, instance, operation){
@@ -17,27 +17,34 @@ var table = instance.table('testbigtable');
 
 //comment below code next run time since the family is already created.
 /*
+table.createFamily('info', function(err, family){
+   console.log('err', err);
+   console.log(family, "created");
+});
+
+
 table.createFamily('dt', function(err, family){ 
 	console.log('err', err)	;
 	console.log(family, "created");
 });
-
+*/
+/*
 var rows = [
   {
-    key: 'W1|Wb1|Depth|STIT',
+    key: 'testlowercase',
     data: {
       info: {
-        name: 'STIT',
-        unit: 'ps'
+        name: 'lowercase',
+        unit: 'deg'
       },
       dt: {
-        999: 2.3,
-        999.5: 2.3,
-        1000: 2.5,
-        1001: 2.6,
-        1002: 2.8,
-        1003: 2.5,
-        value: 3.4
+        999: 132.3,
+        999.5: 200.3,
+        1000: 223.5,
+        1001: 234.6,
+        1002: 322.8,
+        1003: 245.5,
+        value: 300.4
       }
     }
   }
@@ -49,30 +56,34 @@ table.insert(rows, function(err) {
   }
 });
 
-
+/*
 table.getRows(function(err, rows) {
-    console.log(rows.length);
+    console.log(rows[0]);
   // `rows` is an array of Row objects.
 });
 */
 //get row
 
-var myfilter = [
+
+var myfilter  = [
     {
       column: /^([1-9][0-9]{0,2}|1000)$/
     }
 ];
 
-table.getRows({filter: myfilter}, function(err, rows){
+
+
+table.getRows({keys: ['W1|Wb1|Depth|ECCE'], filter: myfilter}, function(err, rows){
     for (var i = 0; i < rows.length; ++i){
         console.log(rows[i].id, rows[i].data);
+        //console.log(rows[i]);
     }
 })
 
 /*
 var row = table.row('W1|Wb1|Depth|STIT');
 row.get(function(err){
-	console.log(row);
+	console.log(row.data);
 	});
-
 */
+
