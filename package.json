@@ -22,7 +22,8 @@
     "google-cloud": "^0.42.2",
     "googleapis": "^13.0.0",
     "hbase": "^0.2.2",
-    "node-thrift-hbase": "^0.12.1"
+    "node-thrift-hbase": "^0.12.1",
+    "to-regex-range": "^1.0.2"
   },
   "devDependencies": {
     "crypto-js": "^3.1.6"
