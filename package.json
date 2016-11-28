@@ -1,6 +1,6 @@
 {
-  "name": "cloud exer",
-  "description": "cloud exer",
+  "name": "myexer",
+  "description": "my exer",
   "version": "0.0.1",
   "private": true,
   "license": "Apache Version 2.0",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@google-cloud/bigtable": "^0.5.1",
     "@google-cloud/storage": "^0.3.0",
+    "@google-cloud/pubsub": "^0.3.0",
     "assert": "^1.4.1",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
