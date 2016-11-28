@@ -2,7 +2,7 @@
 const PubSub = require('@google-cloud/pubsub');
 
 // Your Google Cloud Platform project ID
-const projectId = 'well-integrity-dev-1372';
+const projectId = 'yourprojectid';
 
 // Instantiates a client
 const pubsubClient = PubSub({
