@@ -1,4 +1,4 @@
-var bigtable = require('@google-cloud/bigtable')({projectId: 'well-integrity-dev-1372'});
+var bigtable = require('@google-cloud/bigtable')({projectId: 'yourprojectid'});
 
 
 var callback = function(err, instance, operation){
@@ -11,9 +11,7 @@ var instance = bigtable.instance('my-instance');
 //var options = { families: ['info']};
 //var table = instance.createTable('testbigtable', options, function(err, table, apiResponse){console.log(table);});
 
-var table = instance.table('testbigtable');
-//console.log(table);
-
+var table = instance.table('testbigtable');   //this line is required for every data add and query step.
 
 //comment below code next run time since the family is already created.
 /*
